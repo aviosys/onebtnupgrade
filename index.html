@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Hello World!</title>
+  </head>
+  <body>
+
+
+    <h3>ipscan</h3>
+    <button id="ipscan">scan</button>
+    <div id="posmsg" ></div>    
+    <h3>File Upload in Electron</h3>
+    <button id="upload">Upload File</button>   
+
+    <br />
+    <br />
+    <select id="sel" size="5" multiple="multiple"></select>
+
+    <!-- Adding Individual Renderer Process JS File -->
+	 <script src="renderer.js"></script>
+  </body>
+</html>

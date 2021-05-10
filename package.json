@@ -1,0 +1,70 @@
+{
+  "name": "electron-onebtn-upgrade",
+  "version": "1.0.0",
+  "description": "Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aviosys/onebtnupgrade.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "None",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "electron": "^12.0.4"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dgram": "^1.0.1",
+    "electron-squirrel-startup": "^1.0.0",
+    "form-data": "^4.0.0",
+    "ip": "^1.1.5"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron-onebtn-upgrade"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/aviosys/onebtnupgrade/issues"
+  },
+  "homepage": "https://github.com/aviosys/onebtnupgrade#readme"
+}
