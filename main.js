@@ -13,7 +13,9 @@ const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const client = dgram.createSocket('udp4');
 var HOST = require("ip").address();
-
+var num = 0;
+var info = [];
+var flg=0;
 
 function createWindow () {
 // Create the browser window.
@@ -108,17 +110,6 @@ ipc.on('uploadfw', (event, arg) =>  {
     
 });
 
-client.bind(function () {
-  client.setBroadcast(true);
-  
-  });
-
-function sendMsg(){
-  var message = Buffer.from('IPQUERY,0');
-  client.send(message,0,message.length,10000, '255.255.255.255');
-  //client.close();
-}
-
 server.on('error', (err) => {
   console.log(`server error:\n${err.stack}`);
   server.close();
@@ -137,16 +128,45 @@ server.bind(9999, HOST,function () {
 
 ipc.on('UDPGO', (event, arg) =>  {   
 
-   /* setInterval(()=>{
-      sendMsg();
-      console.log("send message");
-  },3000);*/
-
+  const client = dgram.createSocket('udp4');
+  client.on('close',()=>{
+    console.log('client.socket已關閉');
+  });
+  
+  client.on('error',(err)=>{
+    console.log(err);
+    client.close();
+  });
+  
+  client.bind(42324,HOST,function () {
+    client.setBroadcast(true);  
+  });
+  
+  function sendMsg(){
+    var message = Buffer.from('IPQUERY,0');
+    client.send(message, 0, message.length, 10000, '255.255.255.255', function(err, bytes) {
+      client.close();
+    });
+  } 
   sendMsg();
 
   server.on('message', (msg, rinfo) => {
-    //console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`); 
-    event.reply('UDPGO-reply',`${msg}`);
+    
+    
+   
+    if(`${msg}`.indexOf('90-76') == -1)
+    {  
+      //console.log(`${msg}`);
+
+      info[num] = `${msg}`;
+      //console.log(info);
+      num++;
+     
+      event.reply('UDPGO-reply',`${msg}`);
+
+    }
+
+
   });
  
 
