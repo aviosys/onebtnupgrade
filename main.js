@@ -11,7 +11,7 @@ const axios = require('axios');
 const { net } = require('electron');
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
-const client = dgram.createSocket('udp4');
+
 var HOST = require("ip").address();
 var num = 0;
 var info = [];
